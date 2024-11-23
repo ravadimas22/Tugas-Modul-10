@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Sapa Menggunakan AJAX</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            width: 100px;
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+        }
+        #welcome-message {
+            text-align: center;
+            color: #2e8b57;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Form Sapa Menggunakan AJAX</h2>
+        <form id="sapaForm">
+            <div class="form-group">
+                <input type="text" id="nama" name="nama" placeholder="Masukkan nama">
+                <div id="error-message" class="error">Nama tidak boleh kosong</div>
+            </div>
+            <button type="submit">Kirim</button>
+        </form>
+        <div id="welcome-message"></div>
+    </div>
+
+    <script>
+        document.getElementById('sapaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nama = document.getElementById('nama').value.trim();
+            const errorMessage = document.getElementById('error-message');
+            const welcomeMessage = document.getElementById('welcome-message');
+            
+            // Reset pesan
+            errorMessage.style.display = 'none';
+            welcomeMessage.innerHTML = '';
+            
+            // Validasi nama
+            if (!nama) {
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            // Simulasi AJAX request
+            // Dalam kasus nyata, ini akan mengirim request ke server
+            setTimeout(() => {
+                welcomeMessage.innerHTML = `Halo, ${nama}! Selamat datang di AJAX!`;
+                welcomeMessage.style.color = '#2e8b57'; // Warna hijau seperti di gambar
+                document.getElementById('nama').value = ''; // Reset input
+            }, 100);
+        });
+
+        // Sembunyikan pesan error saat user mulai mengetik
+        document.getElementById('nama').addEventListener('input', function() {
+            document.getElementById('error-message').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
